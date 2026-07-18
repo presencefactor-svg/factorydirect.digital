@@ -1,9 +1,21 @@
 # factorydirect.digital
 
-Static multilingual landing page for Factory Direct Multimedia WooCommerce marketplace connectors:
+Static Cloudflare Pages repository for Factory Direct Multimedia.
 
-- OLX.ba WooCommerce Connector
-- OLX.bg / Marketplace Connector BG for WooCommerce
+## Routes
+
+```text
+/                       Lightweight Factory Direct entry page
+/woo/                   WooCommerce OLX.ba / OLX.bg connector landing
+/woo/documentation/     Installation and configuration documentation
+```
+
+## Placeholder links
+
+```text
+Free plugin: https://wordpress.org
+PRO plugin:  https://stripe.com
+```
 
 ## Cloudflare Pages settings
 
@@ -13,36 +25,4 @@ Build command: (empty)
 Build output directory: /
 Root directory: /
 Production branch: main
-```
-
-## Routes
-
-The same landing page is available at both paths so Cloudflare can be connected either as the domain root or as the `/woo` route:
-
-```text
-/
-/woo/
-```
-
-Target public URL requested:
-
-```text
-https://factorydirect.digital/woo/
-```
-
-## Languages
-
-Language switcher included for:
-
-- English (`?lang=en`)
-- Serbian/BHS Latin (`?lang=sr`)
-- Bulgarian (`?lang=bg`)
-
-## Future PDF placeholders
-
-Suggested future document paths:
-
-```text
-/woo/docs/olx-ba-woocommerce-connector.pdf
-/woo/docs/olx-bg-woocommerce-connector.pdf
 ```
