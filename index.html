@@ -1,1 +1,270 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Factory Direct Multimedia</title><meta name="description" content="Factory Direct Multimedia digital products and WooCommerce marketplace connectors."><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#07101f,#080d18);color:#eef4ff;font-family:Inter,system-ui,sans-serif}.card{width:min(760px,calc(100% - 32px));padding:42px;border:1px solid rgba(148,163,184,.25);border-radius:28px;background:rgba(15,23,42,.78);box-shadow:0 28px 80px rgba(0,0,0,.38)}h1{font-size:clamp(38px,7vw,72px);line-height:.95;letter-spacing:-.07em;margin:0 0 16px}p{color:#aebdd3;line-height:1.65;font-size:18px}.btn{display:inline-flex;margin-top:18px;min-height:50px;align-items:center;padding:0 20px;border-radius:15px;background:linear-gradient(135deg,#38bdf8,#22c55e);color:#03111d;text-decoration:none;font-weight:900}</style></head><body><main class="card"><h1>Factory Direct Multimedia</h1><p>Digital products, automation and WooCommerce marketplace connector projects.</p><a class="btn" href="/woo/">Open WooCommerce OLX connectors →</a></main></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CWF1PZN7PN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CWF1PZN7PN');
+</script>
+  <meta charset="UTF-8" />
+  <title>FACTORY DIRECT – Digital Products & Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    :root {
+      --text-main: #ffffff;
+      --text-muted: #b7c2ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 10% 0%, #151d46 0, #050816 45%, #02030b 100%);
+      color: var(--text-main);
+    }
+
+    /* ===== ANIMATED BACKGROUND ===== */
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      animation: bgShift 20s ease-in-out infinite alternate;
+      background: 
+        radial-gradient(circle at 0% 0%, #182c5c 0%, transparent 55%),
+        radial-gradient(circle at 100% 100%, #452067 0%, transparent 55%),
+        radial-gradient(circle at 0% 100%, #263b6b 0%, transparent 55%),
+        radial-gradient(circle at 100% 0%, #4b206b 0%, transparent 55%);
+    }
+
+    @keyframes bgShift {
+      0% { filter: hue-rotate(0deg) saturate(1.05); transform: scale(1); }
+      100% { filter: hue-rotate(-12deg) saturate(1.3); transform: scale(1.05); }
+    }
+
+    /* Nebula blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.75;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+    .blob-1 {
+      width: 500px; height: 500px;
+      top: -120px; left: -80px;
+      background: radial-gradient(circle, #6aa8ff, transparent 60%);
+      animation: float1 22s ease-in-out infinite alternate;
+    }
+    .blob-2 {
+      width: 520px; height: 520px;
+      top: 40%; right: -200px;
+      background: radial-gradient(circle, #c471ff, transparent 60%);
+      animation: float2 28s ease-in-out infinite alternate;
+    }
+    .blob-3 {
+      width: 420px; height: 420px;
+      bottom: -140px; left: 25%;
+      background: radial-gradient(circle, #ffcf71, transparent 60%);
+      animation: float3 26s ease-in-out infinite alternate;
+    }
+    @keyframes float1 { from {transform: translate(0,0);} to {transform: translate(60px,40px);} }
+    @keyframes float2 { from {transform: translate(0,0);} to {transform: translate(-80px,-40px);} }
+    @keyframes float3 { from {transform: translate(0,0);} to {transform: translate(40px,-60px);} }
+
+    /* Twinkling particles */
+    .particles {
+      position: fixed;
+      inset: 0;
+      opacity: 0.4;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 8px white;
+      animation: twinkle 5s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.3); }
+      100% { opacity: 0.3; transform: scale(0.9); }
+    }
+
+    /* ===== CENTER HERO ===== */
+    .page {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      padding-bottom: 12vh;
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding-bottom: 18vh;
+      }
+      .cta-container {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .hero {
+      text-align: center;
+      animation: fadeIn 1.6s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .title {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      background: linear-gradient(140deg, #ffffff, #d2e0ff, #9fc3ff, #ffcf71);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 22px rgba(155,185,255,0.5);
+    }
+
+    .subtitle {
+      font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .cta-title {
+      margin-top: 3.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
+    /* ===== CTA & FOOTER ===== */
+    .cta-container {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .catalog-link {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: white;
+      background: rgba(106, 168, 255, 0.15);
+      border: 1px solid rgba(106, 168, 255, 0.4);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(106, 168, 255, 0.2);
+    }
+
+    .catalog-link:hover {
+      background: rgba(106, 168, 255, 0.25);
+      border-color: rgba(106, 168, 255, 0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 30px rgba(106, 168, 255, 0.3);
+    }
+
+    .site-footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(183, 194, 255, 0.5);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="background">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Twinkling Particles -->
+  <div class="particles" id="particles"></div>
+
+  <main class="page">
+    <div class="hero">
+      <h1 class="title">FACTORY DIRECT</h1>
+      <p class="subtitle">DIGITAL PRODUCTS &amp; SERVICES</p>
+      
+      <p class="cta-title">Our websites</p>
+      <div class="cta-container">
+        <a href="https://pricelist.digital" class="catalog-link" target="_blank">DIGITAL PRICELIST</a>
+        <a href="https://quickstar.store" class="catalog-link" target="_blank">QUICK STAR</a>
+        <a href="https://sofortnetz.de" class="catalog-link">SOFORT NETZ</a>
+        <a href="https://movy.tel" class="catalog-link" target="_blank">MOVY.TEL</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      Factory Direct LTD | Since 2019.<br>
+      124 City Road, London, United Kingdom, EC1V 2NX<br>
+      Company number 11974972 |Whatsapp: +447451285419<br>
+      <a href="privacy-policy.html" style="color: #b7c2ff; text-decoration: none;">Privacy Policy</a>
+    </footer>
+
+  </main>
+
+  <script>
+    // Generate small star particles
+    (function () {
+      const container = document.getElementById("particles");
+      const count = 60;
+
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+        const size = Math.random() * 2.3 + 0.7;
+        p.style.width = size + "px";
+        p.style.height = size + "px";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.top = Math.random() * 100 + "%";
+        p.style.animationDelay = (Math.random() * 5).toFixed(2) + "s";
+        container.appendChild(p);
+      }
+    })();
+  </script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"eec42880d11f4e5f9e278bf2a288c40d","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -5,12 +5,13 @@ Static Cloudflare Pages repository for Factory Direct Multimedia.
 ## Routes
 
 ```text
-/                       Lightweight Factory Direct entry page
+/                       Restored original Factory Direct homepage
+/privacy-policy.html    Privacy policy from archived site
 /woo/                   WooCommerce OLX.ba / OLX.bg connector landing
 /woo/documentation/     Installation and configuration documentation
 ```
 
-## Placeholder links
+## Placeholder links on /woo/
 
 ```text
 Free plugin: https://wordpress.org
