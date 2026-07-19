@@ -18,10 +18,10 @@
     "url": "/downloads/woo/marketplace-connector-pl-for-woocommerce.zip"
   },
   {
-    "file": "marketplace-connector-pl-pro-for-woocommerce.zip",
-    "bytes": 17963,
-    "sha256": "ad19cf7776732f46e96d2e6021b04bb3c84e930f60657775f260b0e95a4ee126",
-    "url": "/downloads/woo/marketplace-connector-pl-pro-for-woocommerce.zip"
+    "file": "marketplace-connector-pt-for-woocommerce.zip",
+    "bytes": 16070,
+    "sha256": "456d9585734e6ef77adbc3890fccfd4e420ca515f7753f8d46aada933f34b270",
+    "url": "/downloads/woo/marketplace-connector-pt-for-woocommerce.zip"
   },
   {
     "file": "marketplace-connector-ro-for-woocommerce.zip",
@@ -30,33 +30,9 @@
     "url": "/downloads/woo/marketplace-connector-ro-for-woocommerce.zip"
   },
   {
-    "file": "marketplace-connector-ro-pro-for-woocommerce.zip",
-    "bytes": 17960,
-    "sha256": "7abb1261ae11c4efbdb81238db2855473c69aa26f5b45d16738f7817efe97432",
-    "url": "/downloads/woo/marketplace-connector-ro-pro-for-woocommerce.zip"
-  },
-  {
-    "file": "marketplace-connector-pt-for-woocommerce.zip",
-    "bytes": 16070,
-    "sha256": "456d9585734e6ef77adbc3890fccfd4e420ca515f7753f8d46aada933f34b270",
-    "url": "/downloads/woo/marketplace-connector-pt-for-woocommerce.zip"
-  },
-  {
-    "file": "marketplace-connector-pt-pro-for-woocommerce.zip",
-    "bytes": 17969,
-    "sha256": "a97790179521bbdbddadd59b4a793b90b52261623d6cc16de431343dba36c326",
-    "url": "/downloads/woo/marketplace-connector-pt-pro-for-woocommerce.zip"
-  },
-  {
     "file": "marketplace-connector-ua-for-woocommerce.zip",
     "bytes": 16072,
     "sha256": "995dcd1ce0bbbedc7589bc26e99b3e861a875cd4b057ef6c03c2dd53c9631468",
     "url": "/downloads/woo/marketplace-connector-ua-for-woocommerce.zip"
-  },
-  {
-    "file": "marketplace-connector-ua-pro-for-woocommerce.zip",
-    "bytes": 17972,
-    "sha256": "984f003865223ac6f2e278eb53c6cdc9c73b3aa903d247a1d0aefcec3b150b5e",
-    "url": "/downloads/woo/marketplace-connector-ua-pro-for-woocommerce.zip"
   }
 ]
