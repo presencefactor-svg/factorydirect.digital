@@ -1,271 +1,938 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CWF1PZN7PN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factory Direct Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  gtag('config', 'G-CWF1PZN7PN');
-</script>
-  <meta charset="UTF-8" />
-  <title>FACTORY DIRECT – Digital Products & Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="favicon.png">
+  :root {
+    --midnight: #0a0e1a;
+    --slate: #141929;
+    --steel: #1e2540;
+    --electric: #3b82f6;
+    --cyan: #22d3ee;
+    --ember: #f97316;
+    --ghost: #94a3b8;
+    --cloud: #e2e8f0;
+    --white: #f8fafc;
+  }
 
-  <style>
-    :root {
-      --text-main: #ffffff;
-      --text-muted: #b7c2ff;
-    }
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.03; }
+    50% { opacity: 0.07; }
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    html, body {
-      height: 100%;
-      overflow: hidden;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at 10% 0%, #151d46 0, #050816 45%, #02030b 100%);
-      color: var(--text-main);
-    }
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+    50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.3); }
+  }
 
-    /* ===== ANIMATED BACKGROUND ===== */
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      animation: bgShift 20s ease-in-out infinite alternate;
-      background: 
-        radial-gradient(circle at 0% 0%, #182c5c 0%, transparent 55%),
-        radial-gradient(circle at 100% 100%, #452067 0%, transparent 55%),
-        radial-gradient(circle at 0% 100%, #263b6b 0%, transparent 55%),
-        radial-gradient(circle at 100% 0%, #4b206b 0%, transparent 55%);
-    }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
 
-    @keyframes bgShift {
-      0% { filter: hue-rotate(0deg) saturate(1.05); transform: scale(1); }
-      100% { filter: hue-rotate(-12deg) saturate(1.3); transform: scale(1.05); }
-    }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
-    /* Nebula blobs */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(55px);
-      opacity: 0.75;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-    .blob-1 {
-      width: 500px; height: 500px;
-      top: -120px; left: -80px;
-      background: radial-gradient(circle, #6aa8ff, transparent 60%);
-      animation: float1 22s ease-in-out infinite alternate;
-    }
-    .blob-2 {
-      width: 520px; height: 520px;
-      top: 40%; right: -200px;
-      background: radial-gradient(circle, #c471ff, transparent 60%);
-      animation: float2 28s ease-in-out infinite alternate;
-    }
-    .blob-3 {
-      width: 420px; height: 420px;
-      bottom: -140px; left: 25%;
-      background: radial-gradient(circle, #ffcf71, transparent 60%);
-      animation: float3 26s ease-in-out infinite alternate;
-    }
-    @keyframes float1 { from {transform: translate(0,0);} to {transform: translate(60px,40px);} }
-    @keyframes float2 { from {transform: translate(0,0);} to {transform: translate(-80px,-40px);} }
-    @keyframes float3 { from {transform: translate(0,0);} to {transform: translate(40px,-60px);} }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--midnight);
+    color: var(--cloud);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    /* Twinkling particles */
-    .particles {
-      position: fixed;
-      inset: 0;
-      opacity: 0.4;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .particle {
-      position: absolute;
-      width: 2px; height: 2px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 0 8px white;
-      animation: twinkle 5s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle {
-      0% { opacity: 0.1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.3); }
-      100% { opacity: 0.3; transform: scale(0.9); }
-    }
+  /* ---- GRID BACKGROUND ---- */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridPulse 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    /* ===== CENTER HERO ===== */
-    .page {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      padding-bottom: 12vh;
-    }
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59,130,246,0.1);
+  }
 
-    @media (max-width: 768px) {
-      .page {
-        padding-bottom: 18vh;
-      }
-      .cta-container {
-        margin-bottom: 2rem;
-      }
-    }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    .hero {
-      text-align: center;
-      animation: fadeIn 1.6s ease forwards;
-      opacity: 0;
-    }
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--electric), var(--cyan));
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--midnight);
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  .logo span { color: var(--electric); }
 
-    .title {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      background: linear-gradient(140deg, #ffffff, #d2e0ff, #9fc3ff, #ffcf71);
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 22px rgba(155,185,255,0.5);
-    }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
 
-    .subtitle {
-      font-size: clamp(0.85rem, 1.8vw, 1.1rem);
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
+  .nav-links a {
+    color: var(--ghost);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    letter-spacing: 0.3px;
+  }
 
-    .cta-title {
-      margin-top: 3.5rem;
-      margin-bottom: 0.8rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      opacity: 0.8;
-    }
+  .nav-links a:hover { color: var(--white); }
 
-    /* ===== CTA & FOOTER ===== */
-    .cta-container {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+  .nav-cta {
+    background: var(--electric);
+    color: var(--white) !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
+  }
 
-    .catalog-link {
-      display: inline-block;
-      padding: 14px 32px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: white;
-      background: rgba(106, 168, 255, 0.15);
-      border: 1px solid rgba(106, 168, 255, 0.4);
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(106, 168, 255, 0.2);
-    }
+  .nav-cta:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
 
-    .catalog-link:hover {
-      background: rgba(106, 168, 255, 0.25);
-      border-color: rgba(106, 168, 255, 0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 30px rgba(106, 168, 255, 0.3);
-    }
+  /* ---- HERO ---- */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-    .site-footer {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.75rem;
-      color: rgba(183, 194, 255, 0.5);
-      line-height: 1.6;
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease forwards;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background: var(--cyan);
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease 0.15s forwards;
+    opacity: 0;
+  }
+
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--electric), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--ghost);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+    opacity: 0;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    animation: fadeUp 0.8s ease 0.45s forwards;
+    opacity: 0;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--electric);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59,130,246,0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--cloud);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(148,163,184,0.3);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--electric);
+    color: var(--white);
+    background: rgba(59,130,246,0.08);
+  }
+
+  /* ---- TICKER ---- */
+  .ticker-wrap {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(59,130,246,0.1);
+    border-bottom: 1px solid rgba(59,130,246,0.1);
+    padding: 1rem 0;
+    overflow: hidden;
+    background: rgba(20, 25, 41, 0.6);
+  }
+
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 30s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ghost);
+    white-space: nowrap;
+    padding: 0 2.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .ticker-item .dot {
+    width: 5px;
+    height: 5px;
+    background: var(--electric);
+    border-radius: 50%;
+  }
+
+  /* ---- SECTIONS COMMON ---- */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--electric);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--ghost);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  /* ---- SERVICES / WHAT WE BUILD ---- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--slate);
+    border: 1px solid rgba(59,130,246,0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--electric), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .service-card:hover {
+    border-color: rgba(59,130,246,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(59,130,246,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .service-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+
+  .service-card p {
+    color: var(--ghost);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* ---- NETWORK ---- */
+  .network-section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .network-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .network-card {
+    background: var(--slate);
+    border: 1px solid rgba(59,130,246,0.08);
+    border-radius: 12px;
+    padding: 1.8rem;
+    transition: all 0.4s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .network-card:hover {
+    border-color: rgba(59,130,246,0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+  }
+
+  .network-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .network-domain {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .network-arrow {
+    color: var(--electric);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+  }
+
+  .network-card:hover .network-arrow { transform: translate(3px, -3px); }
+
+  .network-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    width: fit-content;
+  }
+
+  .tag-main {
+    background: rgba(59,130,246,0.12);
+    color: var(--electric);
+  }
+
+  .tag-pricing {
+    background: rgba(249,115,22,0.12);
+    color: var(--ember);
+  }
+
+  .tag-lifestyle {
+    background: rgba(168,85,247,0.12);
+    color: #a855f7;
+  }
+
+  .tag-productivity {
+    background: rgba(34,211,238,0.12);
+    color: var(--cyan);
+  }
+
+  .tag-marketing {
+    background: rgba(16,185,129,0.12);
+    color: #10b981;
+  }
+
+  .tag-telecom {
+    background: rgba(236,72,153,0.12);
+    color: #ec4899;
+  }
+
+  .tag-commerce {
+    background: rgba(234,179,8,0.12);
+    color: #eab308;
+  }
+
+  .tag-plugins {
+    background: rgba(139,92,246,0.12);
+    color: #8b5cf6;
+  }
+
+  .tag-speed {
+    background: rgba(251,146,60,0.12);
+    color: #fb923c;
+  }
+
+  .network-desc {
+    color: var(--ghost);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  /* ---- STATS BAR ---- */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(59,130,246,0.08);
+    border-top: 1px solid rgba(59,130,246,0.1);
+    border-bottom: 1px solid rgba(59,130,246,0.1);
+    margin: 2rem 0;
+  }
+
+  .stat {
+    background: rgba(20, 25, 41, 0.8);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -1px;
+  }
+
+  .stat-number .highlight { color: var(--electric); }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--ghost);
+    margin-top: 0.4rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* ---- CTA / CONTACT ---- */
+  .cta-section {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-section .section-title {
+    margin-bottom: 1rem;
+  }
+
+  .cta-section .section-desc {
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(59,130,246,0.08);
+    padding: 3rem 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-company .logo {
+    margin-bottom: 1rem;
+  }
+
+  .footer-company p {
+    font-size: 0.85rem;
+    color: var(--ghost);
+    line-height: 1.7;
+  }
+
+  .footer-company a {
+    color: var(--electric);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-company a:hover { color: var(--cyan); }
+
+  .footer-col h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .footer-col a {
+    color: var(--ghost);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: var(--white); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(59,130,246,0.06);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .footer-left {
+    font-size: 0.8rem;
+    color: var(--ghost);
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+
+  .footer-legal a {
+    color: var(--ghost);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+  }
+
+  .footer-legal a:hover { color: var(--white); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    section, .network-section, .cta-section { padding: 4rem 1.2rem; }
+    footer { padding: 3rem 1.2rem 2rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
     }
-  </style>
+  }
+</style>
 </head>
-
 <body>
-  <!-- Animated Background -->
-  <div class="background">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark">FD</div>
+    factory<span>direct</span>.digital
   </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#network">Network</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
 
-  <!-- Twinkling Particles -->
-  <div class="particles" id="particles"></div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Digital Infrastructure</div>
+  <h1>We build the<br><span class="accent">digital backbone</span><br>for your business.</h1>
+  <p class="hero-sub">From web platforms to data-driven products — we deliver end-to-end digital solutions, factory direct. No middlemen, no overhead, just results.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Start a Project</a>
+    <a href="#network" class="btn-outline">Explore Our Network</a>
+  </div>
+</div>
 
-  <main class="page">
-    <div class="hero">
-      <h1 class="title">FACTORY DIRECT</h1>
-      <p class="subtitle">DIGITAL PRODUCTS &amp; SERVICES</p>
-      
-      <p class="cta-title">Our websites</p>
-      <div class="cta-container">
-        <a href="https://pricelist.digital" class="catalog-link" target="_blank">DIGITAL PRICELIST</a>
-        <a href="/woo/" class="catalog-link">WOO PLUGINS</a>
-        <a href="https://quickstar.store" class="catalog-link" target="_blank">QUICK STAR</a>
-        <a href="https://sofortnetz.de" class="catalog-link">SOFORT NETZ</a>
-        <a href="https://movy.tel" class="catalog-link" target="_blank">MOVY.TEL</a>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="dot"></span>Web Development</div>
+    <div class="ticker-item"><span class="dot"></span>Digital Strategy</div>
+    <div class="ticker-item"><span class="dot"></span>Data Analytics</div>
+    <div class="ticker-item"><span class="dot"></span>Cloud Infrastructure</div>
+    <div class="ticker-item"><span class="dot"></span>SEO & Growth</div>
+    <div class="ticker-item"><span class="dot"></span>UI/UX Design</div>
+    <div class="ticker-item"><span class="dot"></span>E-Commerce</div>
+    <div class="ticker-item"><span class="dot"></span>Content Platforms</div>
+    <div class="ticker-item"><span class="dot"></span>Web Development</div>
+    <div class="ticker-item"><span class="dot"></span>Digital Strategy</div>
+    <div class="ticker-item"><span class="dot"></span>Data Analytics</div>
+    <div class="ticker-item"><span class="dot"></span>Cloud Infrastructure</div>
+    <div class="ticker-item"><span class="dot"></span>SEO & Growth</div>
+    <div class="ticker-item"><span class="dot"></span>UI/UX Design</div>
+    <div class="ticker-item"><span class="dot"></span>E-Commerce</div>
+    <div class="ticker-item"><span class="dot"></span>Content Platforms</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What We Build</div>
+  <h2 class="section-title">Digital products that perform.</h2>
+  <p class="section-desc">Every project is engineered for speed, scale, and measurable impact. We handle the full stack so you can focus on growth.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Web Platforms</h3>
+      <p>High-performance websites and web apps built with modern architecture. Fast load times, clean code, zero compromises.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Data & Analytics</h3>
+      <p>Turn raw data into decisions. Dashboards, pipelines, and reporting systems tailored to your business metrics.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3>SEO & Digital Growth</h3>
+      <p>Organic traffic strategies backed by technical SEO, content architecture, and performance optimization.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛒</div>
+      <h3>E-Commerce Solutions</h3>
+      <p>Custom storefronts and payment integrations designed to convert visitors into customers.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">☁️</div>
+      <h3>Cloud & DevOps</h3>
+      <p>Scalable infrastructure, CI/CD pipelines, and cloud migrations. Built for reliability and cost-efficiency.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3>UI/UX Design</h3>
+      <p>User-centered interfaces that look sharp and work intuitively. Design systems that scale with your product.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-number">9<span class="highlight">+</span></div>
+    <div class="stat-label">Network Properties</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">100<span class="highlight">%</span></div>
+    <div class="stat-label">In-House Built</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">24<span class="highlight">/7</span></div>
+    <div class="stat-label">Platform Uptime</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number"><span class="highlight">∞</span></div>
+    <div class="stat-label">Scalability</div>
+  </div>
+</div>
+
+<!-- NETWORK -->
+<div class="network-section" id="network">
+  <div class="section-label">Our Network</div>
+  <h2 class="section-title">The digital properties we operate.</h2>
+  <p class="section-desc">A growing ecosystem of platforms — each serving a distinct audience, all built on the same high-performance infrastructure.</p>
+
+  <div class="network-grid">
+    <a class="network-card" href="https://factorydirect.digital" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">factorydirect.digital</span>
+        <span class="network-arrow">↗</span>
       </div>
+      <span class="network-tag tag-main">Headquarters</span>
+      <p class="network-desc">Our flagship — the central hub for digital services, strategy, and client partnerships.</p>
+    </a>
+
+    <a class="network-card" href="https://cjenovnik.digital" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">cjenovnik.digital</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-pricing">Pricing Platform</span>
+      <p class="network-desc">Digitalni cjenovnici i katalozi. Pametno upravljanje cijenama za moderan biznis.</p>
+    </a>
+
+    <a class="network-card" href="https://horoskop.guru" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">horoskop.guru</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-lifestyle">Lifestyle</span>
+      <p class="network-desc">Dnevni, sedmični i mjesečni horoskop. Astrološki sadržaj za široku publiku.</p>
+    </a>
+
+    <a class="network-card" href="https://zimb.pro" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">zimb.pro</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-productivity">Productivity</span>
+      <p class="network-desc">Professional tools and workflow solutions built for teams that move fast.</p>
+    </a>
+
+    <a class="network-card" href="https://presencefactor.digital" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">presencefactor.digital</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-marketing">Digital Presence</span>
+      <p class="network-desc">Online visibility and brand presence solutions. Be found, be remembered, be chosen.</p>
+    </a>
+
+    <a class="network-card" href="https://movy.tel" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">movy.tel</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-telecom">Telecom</span>
+      <p class="network-desc">Mobile-first communication platform. Smart connectivity solutions for the modern era.</p>
+    </a>
+
+    <a class="network-card" href="https://sofortnetz.de" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">sofortnetz.de</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-speed">Instant Network</span>
+      <p class="network-desc">Sofortige digitale Lösungen für den deutschen Markt. Schnell, zuverlässig, direkt.</p>
+    </a>
+
+    <a class="network-card" href="https://quickstar.store" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">quickstar.store</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-commerce">Quick Launch</span>
+      <p class="network-desc">Rapid deployment platform for digital products. From idea to live in record time.</p>
+    </a>
+
+    <a class="network-card" href="https://factorydirect.digital/woo/" target="_blank">
+      <div class="network-card-header">
+        <span class="network-domain">Woo Plugins</span>
+        <span class="network-arrow">↗</span>
+      </div>
+      <span class="network-tag tag-plugins">WooCommerce</span>
+      <p class="network-desc">Custom WooCommerce plugins and extensions. Purpose-built tools to power your online store.</p>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <div class="section-label">Let's Build</div>
+  <h2 class="section-title">Ready to go direct?</h2>
+  <p class="section-desc">Skip the agency overhead. Tell us what you need and we'll scope it within 24 hours.</p>
+  <div class="cta-actions">
+    <a href="mailto:sales@factorydirect.digital" class="btn-primary">sales@factorydirect.digital</a>
+    <a href="#network" class="btn-outline">Browse Network</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-company">
+      <div class="logo">
+        <div class="logo-mark">FD</div>
+        factory<span>direct</span>.digital
+      </div>
+      <p>
+        <strong style="color: var(--cloud);">Factory Direct LTD</strong> | Since 2019<br>
+        124 City Road, London, United Kingdom, EC1V 2NX<br>
+        Company number: 11974972<br>
+        WhatsApp: <a href="https://wa.me/447451285419">+44 7451 285419</a><br>
+        Email: <a href="mailto:sales@factorydirect.digital">sales@factorydirect.digital</a>
+      </p>
     </div>
 
-    <footer class="site-footer">
-      Factory Direct LTD | Since 2019.<br>
-      124 City Road, London, United Kingdom, EC1V 2NX<br>
-      Company number 11974972 |Whatsapp: +447451285419<br>
-      <a href="privacy-policy.html" style="color: #b7c2ff; text-decoration: none;">Privacy Policy</a>
-    </footer>
+    <div class="footer-col">
+      <h4>Our Network</h4>
+      <ul>
+        <li><a href="https://factorydirect.digital">factorydirect.digital</a></li>
+        <li><a href="https://cjenovnik.digital">cjenovnik.digital</a></li>
+        <li><a href="https://horoskop.guru">horoskop.guru</a></li>
+        <li><a href="https://zimb.pro">zimb.pro</a></li>
+        <li><a href="https://presencefactor.digital">presencefactor.digital</a></li>
+      </ul>
+    </div>
 
-  </main>
+    <div class="footer-col">
+      <h4>Products & Services</h4>
+      <ul>
+        <li><a href="https://movy.tel">movy.tel</a></li>
+        <li><a href="https://sofortnetz.de">sofortnetz.de</a></li>
+        <li><a href="https://quickstar.store">quickstar.store</a></li>
+        <li><a href="https://factorydirect.digital/woo/">Woo Plugins</a></li>
+      </ul>
+    </div>
+  </div>
 
-  <script>
-    // Generate small star particles
-    (function () {
-      const container = document.getElementById("particles");
-      const count = 60;
+  <div class="footer-bottom">
+    <div class="footer-left">© 2026 Factory Direct LTD. All rights reserved. Company No. 11974972</div>
+    <ul class="footer-legal">
+      <li><a href="https://factorydirect.digital/privacy-policy.html">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
 
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement("div");
-        p.className = "particle";
-        const size = Math.random() * 2.3 + 0.7;
-        p.style.width = size + "px";
-        p.style.height = size + "px";
-        p.style.left = Math.random() * 100 + "%";
-        p.style.top = Math.random() * 100 + "%";
-        p.style.animationDelay = (Math.random() * 5).toFixed(2) + "s";
-        container.appendChild(p);
-      }
-    })();
-  </script>
-
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"eec42880d11f4e5f9e278bf2a288c40d","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
